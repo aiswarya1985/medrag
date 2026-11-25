@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from loguru import logger
+
 from src.core.generator import answer_question
 from src.core.indexer import build_index, collection_exists, load_index
 from src.core.projects import ProjectDefinition, get_project_definition
@@ -54,6 +56,7 @@ class RAGService:
 
     def query(self, question: str) -> QueryArtifacts:
         index = self.ensure_index_loaded()
+        logger.debug("Querying index '{}' with question: {}", self.config.collection_name, question)
         return answer_question(
             index=index,
             question=question,

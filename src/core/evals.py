@@ -15,6 +15,7 @@ from src.core.schemas import (
     EvalSummaryResponse,
 )
 from src.core.service import RAGService
+from loguru import logger
 
 def _display_metric_name(metric: object) -> str:
     raw_name = getattr(metric, "name", None) or type(metric).__name__.removesuffix("Metric")
@@ -50,6 +51,7 @@ def run_medrag_eval(service: RAGService) -> EvalRunResponse:
         )
 
     dataset = load_eval_dataset(service)
+    logger.info("Loaded evaluation dataset with {} test cases.", (dataset))
     started_at = datetime.now(UTC)
     case_results: list[EvalCaseResultResponse] = []
 
@@ -67,6 +69,11 @@ def run_medrag_eval(service: RAGService) -> EvalRunResponse:
         for metric in build_rag_metrics():
             try:
                 metric.measure(test_case, _show_indicator=False)
+                logger.info(
+                "Metric '{}' score={} threshold={} success={} reason={} error={}",
+                metric.name, metric.score, metric.threshold, metric.success,
+                metric.reason, metric.error
+                )
                 metric_success = bool(getattr(metric, "success", False))
                 metric_results.append(
                     EvalMetricResultResponse(

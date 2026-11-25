@@ -5,6 +5,12 @@ from urllib.parse import quote
 
 import requests
 import streamlit as st
+from loguru import logger
+
+from src.utilities.logger import setup_logger
+from src.utilities.logger import pretty
+
+setup_logger(level="DEBUG", service="UI")
 
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 QUERY_TIMEOUT_SECONDS = 120
@@ -59,6 +65,7 @@ def _run_eval() -> tuple[dict | None, str | None]:
             f"{API_BASE_URL}/evals/medrag/run",
             timeout=EVAL_TIMEOUT_SECONDS,
         )
+        logger.debug("Eval run response: {}", pretty(response))
         response.raise_for_status()
         return response.json(), None
     except requests.RequestException as exc:
@@ -133,6 +140,7 @@ def _format_score(value: float | None) -> str:
 
 def _render_eval_results(payload: dict) -> None:
     summary = payload["summary"]
+    logger.debug("Rendering eval results with summary: {}", summary)
     status_label = "pass" if summary["success"] else "fail"
     metric_cols = st.columns(5)
     metric_cols[0].metric("Status", status_label)
@@ -357,4 +365,5 @@ with eval_tab:
     elif latest_eval_payload is None:
         st.info("No local eval results yet. Run the MedRAG eval to populate this page.")
     else:
+        logger.debug("Rendering latest eval results with payload: {}", pretty(latest_eval_payload))
         _render_eval_results(latest_eval_payload)

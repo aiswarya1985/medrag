@@ -2,13 +2,13 @@
   "summary": {
     "project": "medrag",
     "collection_name": "medrag_collection_bge_small",
-    "started_at": "2026-04-03T19:23:59.896812Z",
-    "completed_at": "2026-04-03T19:24:56.571723Z",
-    "duration_seconds": 56.67,
+    "started_at": "2026-11-25T06:18:02.813570Z",
+    "completed_at": "2026-11-25T06:18:42.141224Z",
+    "duration_seconds": 39.33,
     "dataset_size": 3,
-    "passed_cases": 1,
-    "failed_cases": 2,
-    "success_rate": 0.3333,
+    "passed_cases": 0,
+    "failed_cases": 3,
+    "success_rate": 0.0,
     "success": false
   },
   "cases": [
@@ -16,33 +16,37 @@
       "id": "med_001",
       "query": "What is a common first-line medication approach for type 2 diabetes?",
       "expected_answer": "Clinical guidelines commonly describe metformin as a standard first-line therapy for type 2 diabetes, depending on patient-specific factors.",
-      "actual_answer": "A common first-line medication approach for type 2 diabetes is the use of metformin, typically initiated alongside lifestyle modifications and glycemic monitoring, provided there are no contraindications.",
+      "actual_answer": "A common first-line medication approach for type 2 diabetes typically includes lifestyle modification, glycemic monitoring, and the use of metformin, provided there are no contraindications. Individualized escalation to other medications such as GLP-1 receptor agonists, SGLT2 inhibitors, or insulin may occur based on factors like comorbidities, kidney function, cardiovascular risk, and glycemic control.",
       "sources": [
         "Bootstrap: bootstrap_seed",
-        "PubMed: Unknown document",
-        "WHO: WHO_BP.pdf"
+        "WHO: WHO_BP.pdf (page 38)",
+        "WHO: WHO_BP.pdf (page 39)",
+        "WHO: WHO_BP.pdf (page 58)",
+        "WHO: WHO_BP.pdf (page 10)",
+        "WHO: WHO_BP.pdf (page 41)",
+        "WHO: WHO_BP.pdf (page 40)"
       ],
       "retrieval_context": [
         "Type 2 diabetes management usually begins with lifestyle modification, glycemic monitoring, and metformin when there are no contraindications. Guidelines commonly describe individualized escalation to GLP-1 receptor agonists, SGLT2 inhibitors, or insulin based on comorbidities, kidney function, cardiovascular risk, and glycemic control.",
-        "Conflicts of Interest The authors declare no conflicts of interest. Acknowledgments The authors extend their appreciation to Northern Border University, Saudi Arabia, for supporting this work (Project Number NBU‐CRP‐2026‐3770). Data Availability Statement The data that support the findings of this study are available from the corresponding author upon reasonable request. 1 Rachdaoui N. Insulin: The Friend and the Foe in the Development of Type 2 Diabetes Mellitus International Journal of Molecul",
-        "Where metformin monotherapy fails, the efficacy of an add‐on therapy as a second line depends on the specific target and individual patient differences, and even triple therapy may be recommended for some individuals. The cost‐effectiveness of each combination depended on the cost‐effectiveness model used in the assessment and the nature of the healthcare setting. Discussion DPP‐4 inhibitors/metformin demonstrate significant HbA1c reduction, but their low cost‐effectiveness hinders patient adher",
-        "Type 1 diabetes requires insulin replacement therapy rather than oral first-line agents. Guideline-based care typically includes basal-bolus or pump-based insulin delivery, glucose monitoring, hypoglycemia education, and individualized nutrition planning."
+        "Type 1 diabetes requires insulin replacement therapy rather than oral first-line agents. Guideline-based care typically includes basal-bolus or pump-based insulin delivery, glucose monitoring, hypoglycemia education, and individualized nutrition planning.",
+        "# 6 Implementation tools ## 6.1 Guideline recommendations Graphic summaries of the guideline recommendations are presented below in an algorithmic approach (Figs 3 and 4). This maps the recommendations to a patient-care pathway. Fig. 3 An approach for starting treatment with a single-pill combination **Treat adults with BP ≥140 mmHg or ≥90** (SBP ≥130 mmHg for those with CVD, DM, CKD). **Start two-drug combination therapy, preferably in a single-pill combination** (ACE/ARB, dihydropyridine CCB, ",
+        "Fig. 4 An approach for starting treatment not using a single-pill combination (i.e. with monotherapy or free combination therapy) ```mermaid flowchart TD A[\"Treat adults with BP ≥140 mmHg or ≥90 (SBP ≥130 mmHg for those with CVD, DM, CKD).\"] --> B[\"Start with medications from any of the following three classes of pharmacological antihypertensive medications as an initial treatment: 1) thiazide and thiazide-like agents, 2) ACEi/ARB, and 3) long-acting dihydropyridine CCB.\"] B --> C[\"Treatment tar"
       ],
       "metrics": [
         {
           "name": "Answer Relevance",
-          "score": 1.0,
+          "score": 0.4444444444444444,
           "threshold": 0.7,
-          "success": true,
-          "reason": "The score is 1.00 because the response perfectly addressed the question about the common first-line medication approach for type 2 diabetes without any irrelevant information. Great job on staying focused and providing a clear, concise answer!",
+          "success": false,
+          "reason": "The score is 0.44 because while the output contains some relevant information about medication considerations, it diverges into topics like medication escalation and other factors not directly related to the first-line approach for type 2 diabetes. This dilutes the focus on the primary question, preventing a higher score.",
           "error": null
         },
         {
           "name": "Context Relevance",
-          "score": 0.2727272727272727,
+          "score": 0.125,
           "threshold": 0.7,
           "success": false,
-          "reason": "The score is 0.27 because the relevant statement 'Type 2 diabetes management usually begins with lifestyle modification, glycemic monitoring, and metformin when there are no contraindications' aligns with the input about first-line medication, but the majority of the context discusses advanced treatments, conflicts of interest, and unrelated acknowledgments, which do not pertain to the input.",
+          "reason": "The score is 0.12 because the majority of the context discusses treatments unrelated to the 'first-line medication approach for type 2 diabetes', such as 'individualized escalation to GLP-1 receptor agonists' and 'insulin replacement therapy'. Only one statement mentions 'metformin' as a relevant first-line treatment, which is insufficient to improve the overall relevancy score.",
           "error": null
         },
         {
@@ -50,7 +54,7 @@
           "score": 1.0,
           "threshold": 0.7,
           "success": true,
-          "reason": "The score is 1.00 because there are no contradictions present, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining accuracy and consistency!",
+          "reason": "The score is 1.00 because there are no contradictions, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining consistency!",
           "error": null
         }
       ],
@@ -60,16 +64,22 @@
       "id": "med_002",
       "query": "What kinds of information do hypertension guidelines usually provide?",
       "expected_answer": "Hypertension guidelines generally cover diagnosis thresholds, blood pressure targets, medication classes, and follow-up recommendations.",
-      "actual_answer": "Hypertension guidelines typically provide information on blood pressure thresholds, target ranges, home blood pressure monitoring, lifestyle changes, and medication classes such as ACE inhibitors, ARBs, calcium-channel blockers, and thiazide-type diuretics. They also outline follow-up cadence based on the severity of hypertension, symptoms, and treatment response. Additionally, guidelines may include recommendations for pharmacological treatment initiation, nonpharmacological approaches, and the involvement of nonphysician healthcare workers in hypertension management.",
+      "actual_answer": "Hypertension guidelines typically provide information on blood pressure thresholds, target ranges, home blood pressure monitoring, lifestyle changes, and medication classes such as ACE inhibitors, ARBs, calcium-channel blockers, and thiazide-type diuretics. They also outline follow-up cadence based on the severity of hypertension, symptoms, and treatment response.",
       "sources": [
         "Bootstrap: bootstrap_seed",
-        "WHO: WHO_BP.pdf"
+        "WHO: WHO_BP.pdf (page 14)",
+        "WHO: WHO_BP.pdf (page 9)",
+        "WHO: WHO_BP.pdf (page 42)",
+        "WHO: WHO_BP.pdf (page 13)",
+        "WHO: WHO_BP.pdf (page 11)",
+        "WHO: WHO_BP.pdf (page 22)",
+        "WHO: WHO_BP.pdf (page 15)"
       ],
       "retrieval_context": [
         "Hypertension guidelines generally cover blood pressure thresholds, target ranges, home blood pressure monitoring, lifestyle changes, and medication classes such as ACE inhibitors, ARBs, calcium-channel blockers, and thiazide-type diuretics. Follow-up cadence depends on severity, symptoms, and treatment response.",
-        "# Guideline for the Pharmacological Treatment of Hypertension in Adults ## Introduction This guideline replaces the guidance in the modules Evidence-based protocols and Risk-based CVD management of the HEARTS technical package, as well as the guidance in the WHO PEN package regarding the threshold for initiation of treatment and the preferred pharmacological treatment for hypertension. ### Scope - The guideline addresses pharmacotherapy in individuals with a “confirmed” diagnosis of hypertension",
-        "# Executive Summary More people die each year from cardiovascular diseases than from any other cause. Over three quarters of heart disease and stroke-related deaths occur in low-income and middle-income countries. Hypertension – or elevated blood pressure – is a serious medical condition that significantly increases the risk of heart, brain, kidney, and other diseases. Hypertension can be defined using specific systolic and diastolic blood pressure levels or reported use of antihypertensive medi",
-        "# Clinical Guidelines for Hypertension Management ## 1. Target Systolic Blood Pressure Goals ### 1.1 Recommendations for Patients with Known Cardiovascular Disease (CVD) - **Recommendation**: WHO recommends a target systolic blood pressure treatment goal of &#x3C;130 mmHg in patients with hypertension and known cardiovascular disease (CVD). - **Strength of Recommendation**: Strong recommendation - **Certainty of Evidence**: Moderate-certainty evidence ### 1.2 Recommendations for High-Risk Patien"
+        "This guideline will replace the guidance in the modules *Evidence-based protocols* and *Risk-based CVD management* of the HEARTS technical package, as well as the guidance in the WHO PEN package regarding the threshold for initiation of treatment, and for the preferred pharmacological treatment for hypertension. The guideline does not address measurement of blood pressure or diagnosis of hypertension. It addresses pharmacotherapy in individuals with a “confirmed” diagnosis of hypertension, such ",
+        "# Executive summary More people die each year from cardiovascular diseases than from any other cause. Over three quarters of heart disease and stroke-related deaths occur in low-income and middle-income countries. Hypertension – or elevated blood pressure – is a serious medical condition that significantly increases the risk of heart, brain, kidney and other diseases. Hypertension can be defined using specific systolic and diastolic blood pressure levels or reported use of antihypertensive medic",
+        "# References (1) Cardiovascular diseases (CVDs). Key facts. 17 May 2017 [website] (https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds), accessed 31 March 2021). (2) Hypertension. Key facts. 13 September 2019 [website] (https://www.who.int/news-room/fact-sheets/detail/hypertension, accessed 31 March 2021). (3) Prevention of cardiovascular disease: guidelines for assessment and management of total cardiovascular risk. Geneva: World Health Organization; 2007. (4) Hultcra"
       ],
       "metrics": [
         {
@@ -77,15 +87,15 @@
           "score": 1.0,
           "threshold": 0.7,
           "success": true,
-          "reason": "The score is 1.00 because the response perfectly aligns with the input question, providing relevant and comprehensive information about hypertension guidelines without any irrelevant statements. Great job!",
+          "reason": "The score is 1.00 because the response perfectly addresses the input by providing relevant and comprehensive information about the types of information typically included in hypertension guidelines. There are no irrelevant statements, making the answer fully aligned with the question.",
           "error": null
         },
         {
           "name": "Context Relevance",
-          "score": 0.7272727272727273,
+          "score": 0.5,
           "threshold": 0.7,
-          "success": true,
-          "reason": "The score is 0.73 because while the retrieval context includes relevant information about hypertension guidelines, such as blood pressure thresholds, target ranges, and medication classes, it also contains irrelevant statements about cardiovascular disease statistics that do not directly address the input question.",
+          "success": false,
+          "reason": "The score is 0.50 because while the relevant statements provide a comprehensive overview of what hypertension guidelines typically include, such as 'blood pressure thresholds, target ranges, home blood pressure monitoring, lifestyle changes, and medication classes,' many irrelevant statements focus on broader cardiovascular issues or what the guidelines do not cover, diluting the overall contextual relevancy.",
           "error": null
         },
         {
@@ -93,26 +103,32 @@
           "score": 1.0,
           "threshold": 0.7,
           "success": true,
-          "reason": "The score is 1.00 because there are no contradictions, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining accuracy and consistency!",
+          "reason": "The score is 1.00 because there are no contradictions present, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining consistency!",
           "error": null
         }
       ],
-      "success": true
+      "success": false
     },
     {
       "id": "med_003",
       "query": "Why should retrieved medical guidance include a disclaimer?",
       "expected_answer": "Medical RAG systems should clarify that outputs are educational and not a substitute for clinician judgment or personalized care.",
-      "actual_answer": "Retrieved medical guidance should include a disclaimer because the information is intended for educational purposes only and is not a substitute for clinician judgment, diagnosis, or personalized treatment. This disclaimer helps users understand the limitations of the retrieved material and encourages them to consult qualified healthcare professionals for tailored advice and care.",
+      "actual_answer": "Retrieved medical guidance should include a disclaimer to clarify that the information is for educational purposes only and is not a substitute for clinician judgment, diagnosis, or personalized treatment. This disclaimer helps users understand the limitations of the retrieved material and encourages them to consult qualified healthcare professionals for tailored advice and care.",
       "sources": [
         "Bootstrap: bootstrap_seed",
-        "WHO: WHO_BP.pdf"
+        "WHO: WHO_BP.pdf (page 46)",
+        "WHO: WHO_BP.pdf (page 54)",
+        "WHO: WHO_BP.pdf (page 5)",
+        "WHO: WHO_BP.pdf (page 23)",
+        "WHO: WHO_BP.pdf (page 22)",
+        "WHO: WHO_BP.pdf (page 11)",
+        "WHO: WHO_BP.pdf (page 47)"
       ],
       "retrieval_context": [
         "Medical guidance in retrieval-augmented systems should include a disclaimer that the information is for educational purposes only and is not a substitute for clinician judgment, diagnosis, or personalized treatment. The disclaimer helps users understand the limits of the retrieved material and encourages consultation with qualified healthcare professionals.",
-        "# Clinical Guidelines for Hypertension Management ## 1. Risk Assessment in Hypertension Treatment ### Evidence Summary - The benefits of risk assessment may not solely be due to the assessment itself but also to the treatments provided for identified risk factors. - The certainty of evidence regarding outcomes is very low due to serious concerns about indirectness. - The desirable effects of risk assessment, particularly when it does not delay treatment initiation, outweigh the potential undesir",
-        "# Annex 2: Managing Declarations of Interest and Conflicts of Interest ## Compliance and Ethics The steering group adhered to the current Compliance, Risk Management, and Ethics (CRE) policy. ### Declaration of Interest (DOI) Process - All members of the Guideline Development Group (GDG) were required to complete the standard WHO Declaration of Interest forms, which were subsequently reviewed. - The WHO Secretariat conducted a thorough review of the curriculum vitae of each potential participant",
-        "# Clinical Guidelines for Hypertension Management ## 1. Target Systolic Blood Pressure Goals ### 1.1 Recommendations for Patients with Known Cardiovascular Disease (CVD) - **Recommendation**: WHO recommends a target systolic blood pressure treatment goal of &#x3C;130 mmHg in patients with hypertension and known cardiovascular disease (CVD). - **Strength of Recommendation**: Strong recommendation - **Certainty of Evidence**: Moderate-certainty evidence ### 1.2 Recommendations for High-Risk Patien"
+        "doi: 10.1016/j.amjcard.2007.03.005. (70) Gwadry-Sridhar FH, Manias E, Lal L, Salas M, Hughes DA, Ratzki-Leewing A, et al. Impact of interventions on medication adherence and blood pressure control in patients with essential hypertension: a systematic review by the ISPOR medication adherence and persistence special interest group. Value Health. 2013;16(5):863-871. doi: 10.1016/j.jval.2013.03.1631. (71) Walker RC, Tong A, Howard K, Palmer SC. Patient expectations and experiences of remote monitori",
+        "# Annex 2. Managing declarations of interest and conflicts of interest The steering group followed the current Compliance, Risk Management and Ethics (CRE) policy. All members of the Guideline Development Group (GDG) were asked to fill in the standard WHO Declaration of Interest (DOI) forms, which were reviewed. The WHO Secretariat reviewed the curriculum vitae of each potential participant and conducted internet searches (PubMed, Open Payments Data, Google Scholar) for information on potential ",
+        "2</td> <td>Implementation and dissemination</td> <td>24</td> </tr> <tr> <td>5.3</td> <td>Evaluation</td> <td>24</td> </tr> <tr> <td>5.4</td> <td>Future updating of the guideline</td> <td>24</td> </tr> <tr> <td>5.5</td> <td>Research gaps</td> <td>24</td> </tr> </table> 6 **Implementation tools** 26 <table> <tr> <td>6.1</td> <td>Guideline recommendations</td> <td>26</td> </tr> <tr> <td>6.2</td> <td>Drug- and dose-specific protocols</td> <td>28</td> </tr> </table> <table> <tr> <td><strong>Reference"
       ],
       "metrics": [
         {
@@ -120,15 +136,15 @@
           "score": 1.0,
           "threshold": 0.7,
           "success": true,
-          "reason": "The score is 1.00 because the response perfectly addressed the input question without any irrelevant statements, providing a clear and concise explanation of why medical guidance should include a disclaimer. Great job!",
+          "reason": "The score is 1.00 because the response perfectly addressed the question about the importance of including a disclaimer in retrieved medical guidance. The answer was clear, focused, and directly relevant to the input, with no irrelevant statements present. Great job!",
           "error": null
         },
         {
           "name": "Context Relevance",
-          "score": 0.18181818181818182,
+          "score": 0.125,
           "threshold": 0.7,
           "success": false,
-          "reason": "The score is 0.18 because the majority of the statements focus on risk assessment, evidence certainty, and compliance policies, which do not address the necessity of disclaimers in medical guidance. Only two statements are relevant, highlighting that disclaimers clarify the educational purpose of the information and encourage professional consultation.",
+          "reason": "The score is 0.12 because the majority of the retrieval context statements are unrelated to the need for disclaimers in medical guidance, focusing instead on topics like reference citations, medication adherence, and policy processes. Only two statements directly address the importance of disclaimers, emphasizing their role in clarifying the educational purpose of the information and encouraging professional consultation.",
           "error": null
         },
         {
@@ -136,7 +152,7 @@
           "score": 1.0,
           "threshold": 0.7,
           "success": true,
-          "reason": "The score is 1.00 because there are no contradictions, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining accuracy and consistency!",
+          "reason": "The score is 1.00 because there are no contradictions present, indicating a perfect alignment between the actual output and the retrieval context. Great job maintaining consistency!",
           "error": null
         }
       ],

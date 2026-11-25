@@ -9,7 +9,7 @@ import json
 from loguru import logger
 
 from pathlib import Path
-REPO_ROOT = Path(__file__).resolve().parent.parent   # utilities/ -> project root
+REPO_ROOT = Path(__file__).resolve().parents[2]   # utilities/ -> project root
 
 LOG_DIR = REPO_ROOT / "logs"
 LOG_FORMAT = (

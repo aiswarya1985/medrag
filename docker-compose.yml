@@ -57,6 +57,7 @@ services:
       CHUNK_OVERLAP: ${CHUNK_OVERLAP:-100}
     volumes:
       - ./src/projects/medrag/data:/app/src/projects/medrag/data
+      - ./logs:/app/logs
     depends_on:
       - qdrant
       - indexer
@@ -77,6 +78,8 @@ services:
       dockerfile: Dockerfile
     environment:
       API_BASE_URL: http://api:8000
+    volumes:                      # ← add
+      - ./logs:/app/logs  
     depends_on:
       - api
     command:

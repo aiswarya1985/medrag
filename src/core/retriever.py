@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from src.core.base import ProjectConfig
 from src.core.settings import AppSettings
+from loguru import logger
 
 def _build_llm(config: ProjectConfig, settings: AppSettings):
     from llama_index.llms.openai import OpenAI
@@ -17,6 +18,7 @@ def _build_llm(config: ProjectConfig, settings: AppSettings):
 
 
 def build_query_engine(index, config: ProjectConfig, settings: AppSettings):
+    logger.debug("Building query engine for collection '{}'", config.collection_name)
     llm = _build_llm(config, settings)
     query_kwargs = {
         "llm": llm,
@@ -31,4 +33,5 @@ def build_query_engine(index, config: ProjectConfig, settings: AppSettings):
                 "alpha": settings.hybrid_alpha,
             }
         )
+    logger.debug("Query engine built with settings: {}", query_kwargs)    
     return index.as_query_engine(**query_kwargs)

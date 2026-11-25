@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import logging
 import os
 from threading import RLock
 
@@ -22,9 +21,12 @@ from src.core.evals import load_latest_eval_result, run_medrag_eval
 from src.core.service import RAGService
 from src.core.settings import get_settings
 from src.core.source_manager import SourceManager
+from loguru import logger
 
+from src.utilities.logger import setup_logger
 
-logger = logging.getLogger(__name__)
+setup_logger(level="DEBUG", service="api")
+
 settings = get_settings()
 service = RAGService.from_project_name(settings.active_project, settings=settings)
 source_manager = SourceManager(service.config)
@@ -39,7 +41,7 @@ def warm_query_stack() -> None:
         return
     try:
         service.ensure_index_loaded()
-        logger.info("MedRAG query stack warmed for collection '%s'.", service.config.collection_name)
+        logger.info("MedRAG query stack warmed for collection '{}'.", service.config.collection_name)
     except Exception:
         logger.exception("Failed to warm MedRAG query stack during startup.")
 
@@ -137,6 +139,8 @@ def reindex_sources() -> ReindexResponse:
 def query(payload: QueryRequest) -> RAGResponse:
     try:
         with service_lock:
+            logger.info("Processing query for collection '{}'.", service.config.collection_name)
+            logger.debug("Query payload: {}", payload.json())
             result = service.query(payload.question)
         return result.response
     except FileNotFoundError as exc:
